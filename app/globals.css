@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+
+
+
+body {
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Cormorant Garamond"
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Georgia, serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* *{
+  border: 1px solid white;
+} */
