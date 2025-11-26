@@ -14,3 +14,7 @@ export function decodeJwt(token: string) {
     return null;
   }
 }
+export function logout() {
+  sessionStorage.removeItem("token");
+  window.location.href = "/login";
+}

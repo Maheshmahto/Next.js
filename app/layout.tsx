@@ -38,8 +38,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" type="image/png" href="/logo_icon.png" />
       </head>
       <body>
-        <header>My Header</header>
-        {/* <Header/> */}
+        {/* <header>My Header</header> */}
+        <Header/>
         {children}
         <footer>My Footer</footer>
       </body>

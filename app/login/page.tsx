@@ -15,16 +15,18 @@ export default function LoginPage() {
   const handleLogin = async () => {
     setLoading(true);
     setError(null);
-    console.log(Data)
+    console.log(Data);
     try {
-
-     const response = await axios.post("http://34.197.250.249:8000/api/login",Data, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    
+      const response = await axios.post(
+        "http://192.168.29.253:8000/api/login",
+        Data,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = response.data;
       console.log("LOGIN SUCCESS:", data);
@@ -35,13 +37,19 @@ export default function LoginPage() {
       }
 
       // ⭐ Store token in sessionStorage
+           sessionStorage.setItem("user", data.user);
+           sessionStorage.setItem("role", data.user.role);
+
       sessionStorage.setItem("token", data.token);
 
       // Redirect after login
-      window.location.href = "/admin";
-    } catch (err: any) 
-    {
-        console.log(err)
+      if (data.user.role === "SUPER_ADMIN") {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/employee";
+      }
+    } catch (err: any) {
+      console.log(err);
       if (err.response?.data?.detail) {
         setError(err.response.data.detail);
       } else {
@@ -53,7 +61,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="p-5 max-w-md mx-auto">
+    <div className="p-5 max-w-md mx-auto mt-80">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
 
       <input
@@ -61,9 +69,7 @@ export default function LoginPage() {
         placeholder="Enter your email"
         className="border p-2 w-full mb-3"
         value={Data.email}
-        onChange={(e) =>
-          setData({ ...Data, email: e.target.value })
-        }
+        onChange={(e) => setData({ ...Data, email: e.target.value })}
       />
 
       <input
@@ -71,9 +77,7 @@ export default function LoginPage() {
         placeholder="Enter your password"
         className="border p-2 w-full mb-3"
         value={Data.password}
-        onChange={(e) =>
-          setData({ ...Data, password: e.target.value })
-        }
+        onChange={(e) => setData({ ...Data, password: e.target.value })}
       />
 
       {error && <div className="text-red-600 mb-3">{error}</div>}

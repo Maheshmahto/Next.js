@@ -1,6 +1,8 @@
+"use client"
 import Image from "next/image";
 import { montserrat  } from "../app/font";
  import Link from "next/link";
+ import { logout } from "@/utils/decodeJwt";
 export default function Header() {
   return (
     <header
@@ -33,6 +35,10 @@ export default function Header() {
           <Link href="/product" >
           
           </Link>
+          <button className="border p-2 cursor-pointer" onClick={logout}>
+            logout
+          </button>
+          
           <button
             className={`text-[20px] font-medium border-2 border-black rounded hover:bg-gray-50 transition-colors  duration-200 ${montserrat.className}`}
             style={{ padding: "0.625rem 2rem" }}
